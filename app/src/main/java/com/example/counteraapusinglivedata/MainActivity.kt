@@ -21,18 +21,18 @@ class MainActivity : AppCompatActivity(){
 
         var viewmod=ViewModelProvider(this).get(viewmodel::class.java)
 
-        binding.tv.setText("${viewmod.count}")
+        viewmod.count.observe(this){
+            binding.tv.text= it.toString()
+        }
+
         binding.inc.setOnClickListener{
             viewmod.increment()
-            binding.tv.setText("${viewmod.count}")
         }
         binding.desc.setOnClickListener{
             viewmod.descrement()
-            binding.tv.setText("${viewmod.count}")
         }
         binding.rset.setOnClickListener {
             viewmod.reset()
-            binding.tv.setText("${viewmod.count}")
         }
 
     }
